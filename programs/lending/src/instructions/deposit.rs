@@ -38,12 +38,6 @@ pub struct Deposit<'info> {
     pub system_program: Program<'info, System>,
 }
 
-// 1. CPI transfer from user's token account to bank's token account
-// 2. Calculate new shares to be added to the bank
-// 3. Update user's deposited amount and total collateral value
-// 4. Update bank's total deposits and total deposit shares
-// 5. Update users health factor ?? 
-
 pub fn process_deposit(ctx: Context<Deposit>, amount: u64) -> Result<()> {
     let transfer_cpi_accounts = TransferChecked {
         from: ctx.accounts.user_token_account.to_account_info(),
